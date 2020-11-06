@@ -58,18 +58,6 @@ defmodule AuvalOffice.Policy do
     end
   end
 
-  @doc false
-  def expand_result(:next, _id), do: :next
-  def expand_result(true, id), do: {:ok, id, []}
-  def expand_result(false, _id), do: :next
-  def expand_result(:ok, id), do: {:ok, id, []}
-  def expand_result({:ok, reason}, id), do: {:ok, id, reason}
-  def expand_result({:ok, _, reason}, id), do: {:ok, id, reason}
-  def expand_result(:error, id), do: {:error, id, []}
-  def expand_result({:error, reason}, id), do: {:error, id, reason}
-  def expand_result({:error, :default_deny, _reason}, _id), do: :next
-  def expand_result({:error, _, reason}, id), do: {:error, id, reason}
-
   @doc """
   Define a fetcher.
 
@@ -96,6 +84,20 @@ defmodule AuvalOffice.Policy do
   @doc false
   defmacro fetch(id, attr, options, do: fetch_block),
     do: do_fetch(id, attr, [do: fetch_block] ++ options)
+
+  # This is not public API.
+  # Normalize results that may be returned by the rules
+  @doc false
+  def expand_result(:next, _id), do: :next
+  def expand_result(true, id), do: {:ok, id, []}
+  def expand_result(false, _id), do: :next
+  def expand_result(:ok, id), do: {:ok, id, []}
+  def expand_result({:ok, reason}, id), do: {:ok, id, reason}
+  def expand_result({:ok, _, reason}, id), do: {:ok, id, reason}
+  def expand_result(:error, id), do: {:error, id, []}
+  def expand_result({:error, reason}, id), do: {:error, id, reason}
+  def expand_result({:error, :default_deny, _reason}, _id), do: :next
+  def expand_result({:error, _, reason}, id), do: {:error, id, reason}
 
   defp do_rule(id, actions, subject, object, options) do
     rule_block = Keyword.fetch!(options, :do)
