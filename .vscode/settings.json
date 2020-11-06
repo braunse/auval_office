@@ -1,0 +1,4 @@
+{
+    "nixEnvSelector.nixShellConfig": "${workspaceRoot}/shell.nix",
+    "licenser.license": "MPLv2"
+}
