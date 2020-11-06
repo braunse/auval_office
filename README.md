@@ -45,10 +45,6 @@ def deps do
   ]
 ```
 
-## TODO
-
-- [ ] Come up with a better name
-
 ## HOWTO
 
 Authorization happens in a **policy module**, which contains all the rules for a specific policy,
