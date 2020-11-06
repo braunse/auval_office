@@ -22,7 +22,10 @@ defmodule AuvalOffice.MixProject do
   defp deps do
     [
       # Code quality
-      {:credo, "~> 1.5.0", runtime: false, only: :dev}
+      {:credo, "~> 1.5.0", runtime: false, only: :dev},
+
+      # Docs
+      {:ex_doc, "~> 0.23.0", runtime: false, only: :dev}
     ]
   end
 end
