@@ -4,10 +4,17 @@ defmodule AuvalOffice.MixProject do
   def project do
     [
       app: :auval_office,
+      description: "A flexible authorization library",
       version: "0.1.0",
       elixir: "~> 1.11",
       start_permanent: Mix.env() == :prod,
-      deps: deps()
+      deps: deps(),
+      package: [
+        licenses: ["MPLv2"],
+        links: %{
+          "GitHub" => "https://github.com/braunse/auval_office"
+        }
+      ]
     ]
   end
 
