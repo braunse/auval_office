@@ -35,13 +35,13 @@ this library has a couple of additional features:
 
 ## Installation
 
-At the moment, this library is not available on Hex, so install it via a direct github reference:
+`auval_office` is  available on Hex, so install it like this:
 
 ```elixir
 def deps do
   [
     # ...
-    {:auval_office, github: "braunse/auval_office"}
+    {:auval_office, "~> 0.1.0"}
   ]
 ```
 
